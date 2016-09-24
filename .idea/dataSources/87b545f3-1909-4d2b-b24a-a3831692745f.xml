@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="Oracle - @localhost">
+  <database-model serializer="dbm" rdbms="ORACLE" format-version="2.6">
+    <schema id="1" name="USER2">
+      <object-id>50</object-id>
+      <created-timestamp>2016-09-22.15:52:29</created-timestamp>
+      <modified-timestamp>2016-09-22.22:01:57</modified-timestamp>
+      <visible>1</visible>
+      <introspection-timestamp>2016-09-22.22:01:58</introspection-timestamp>
+    </schema>
+    <schema id="2" name="PUBLIC">
+      <object-id>1</object-id>
+    </schema>
+    <schema id="3" name="SYS"/>
+    <schema id="4" name="SYSTEM">
+      <object-id>5</object-id>
+    </schema>
+    <schema id="5" name="OUTLN">
+      <object-id>9</object-id>
+    </schema>
+    <schema id="6" name="DIP">
+      <object-id>14</object-id>
+    </schema>
+    <schema id="7" name="ORACLE_OCM">
+      <object-id>21</object-id>
+    </schema>
+    <schema id="8" name="DBSNMP">
+      <object-id>29</object-id>
+    </schema>
+    <schema id="9" name="APPQOSSYS">
+      <object-id>30</object-id>
+    </schema>
+    <schema id="10" name="CTXSYS">
+      <object-id>32</object-id>
+    </schema>
+    <schema id="11" name="XDB">
+      <object-id>34</object-id>
+    </schema>
+    <schema id="12" name="ANONYMOUS">
+      <object-id>35</object-id>
+    </schema>
+    <schema id="13" name="MDSYS">
+      <object-id>42</object-id>
+    </schema>
+    <schema id="14" name="HR">
+      <object-id>43</object-id>
+    </schema>
+    <schema id="15" name="FLOWS_FILES">
+      <object-id>44</object-id>
+    </schema>
+    <schema id="16" name="APEX_PUBLIC_USER">
+      <object-id>45</object-id>
+    </schema>
+    <schema id="17" name="APEX_040000">
+      <object-id>47</object-id>
+    </schema>
+    <schema id="18" name="ADMINS">
+      <object-id>48</object-id>
+    </schema>
+    <schema id="19" name="FULLCONT">
+      <object-id>49</object-id>
+    </schema>
+    <schema id="20" name="ARTY">
+      <object-id>51</object-id>
+    </schema>
+    <schema id="21" name="XS$NULL">
+      <object-id>2147483638</object-id>
+    </schema>
+    <sequence id="22" parent="1" name="PEOPLE_SEQ">
+      <object-id>22210</object-id>
+      <created-timestamp>2016-09-22.20:03:49</created-timestamp>
+      <modified-timestamp>2016-09-22.20:03:49</modified-timestamp>
+      <min-value>1</min-value>
+      <increment-by>1</increment-by>
+      <next-value>21</next-value>
+    </sequence>
+    <table id="23" parent="1" name="Order">
+      <object-id>22208</object-id>
+      <created-timestamp>2016-09-22.19:49:08</created-timestamp>
+      <modified-timestamp>2016-09-22.19:49:08</modified-timestamp>
+      <organization>HEAP</organization>
+    </table>
+    <table id="24" parent="1" name="PEOPLE">
+      <object-id>22173</object-id>
+      <created-timestamp>2016-09-22.15:52:29</created-timestamp>
+      <modified-timestamp>2016-09-22.22:01:57</modified-timestamp>
+      <organization>HEAP</organization>
+    </table>
+    <table id="25" parent="1" name="PRODUCTS">
+      <object-id>22197</object-id>
+      <created-timestamp>2016-09-22.16:30:27</created-timestamp>
+      <modified-timestamp>2016-09-22.16:35:47</modified-timestamp>
+      <organization>HEAP</organization>
+    </table>
+    <column id="26" parent="23" name="ID_ORDER">
+      <mandatory>1</mandatory>
+      <data-type>NUMBER(*)|0</data-type>
+    </column>
+    <column id="27" parent="23" name="ID_PEOPLE">
+      <mandatory>1</mandatory>
+      <data-type>NUMBER(*)|0</data-type>
+    </column>
+    <column id="28" parent="23" name="ID_MASTER">
+      <mandatory>1</mandatory>
+      <data-type>NUMBER(*)|0</data-type>
+    </column>
+    <column id="29" parent="23" name="ID_PRODUCT">
+      <mandatory>1</mandatory>
+      <data-type>NUMBER(*)|0</data-type>
+    </column>
+    <column id="30" parent="23" name="PRODUCT_COUNT">
+      <mandatory>1</mandatory>
+      <data-type>NUMBER(*)|0</data-type>
+    </column>
+    <column id="31" parent="23" name="DATE_BUY">
+      <mandatory>1</mandatory>
+      <data-type>DATE|0</data-type>
+    </column>
+    <column id="32" parent="23" name="PRODUCT_PRICE">
+      <mandatory>1</mandatory>
+      <data-type>FLOAT(63)|0</data-type>
+    </column>
+    <index id="33" parent="23" name="SYS_C007277">
+      <name-surrogate>1</name-surrogate>
+      <object-id>22209</object-id>
+      <created-timestamp>2016-09-22.19:49:09</created-timestamp>
+      <modified-timestamp>2016-09-22.19:49:09</modified-timestamp>
+      <columns>ID_ORDER</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+      <tablespace-name>SYSTEM</tablespace-name>
+    </index>
+    <key id="34" parent="23" name="SYS_C007277">
+      <name-surrogate>1</name-surrogate>
+      <modified-timestamp>2016-09-22.19:49:10</modified-timestamp>
+      <columns>ID_ORDER</columns>
+      <initially-deferred>1</initially-deferred>
+      <underlying-index>SYS_C007277</underlying-index>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="35" parent="23" name="ORDER_PEOPLE_FK">
+      <modified-timestamp>2016-09-22.19:49:10</modified-timestamp>
+      <columns>ID_PEOPLE</columns>
+      <initially-deferred>1</initially-deferred>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="36" parent="23" name="ORDER_PEOPLE_ID_PEOPLE_FK">
+      <modified-timestamp>2016-09-22.19:49:10</modified-timestamp>
+      <columns>ID_MASTER</columns>
+      <initially-deferred>1</initially-deferred>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="37" parent="23" name="ORDER_PRODUCTS_ID_PRODUCT_FK">
+      <modified-timestamp>2016-09-22.19:49:10</modified-timestamp>
+      <columns>ID_PRODUCT</columns>
+      <initially-deferred>1</initially-deferred>
+      <ref-key>~.PRODUCTS.SYS_C007267</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="38" parent="24" name="ID_PEOPLE">
+      <mandatory>1</mandatory>
+      <data-type>NUMBER(*)|0</data-type>
+    </column>
+    <column id="39" parent="24" name="STYPE">
+      <mandatory>1</mandatory>
+      <data-type>VARCHAR2(20)|0</data-type>
+    </column>
+    <column id="40" parent="24" name="PASSHASH">
+      <mandatory>1</mandatory>
+      <data-type>VARCHAR2(50)|0</data-type>
+    </column>
+    <column id="41" parent="24" name="EMAIL">
+      <mandatory>1</mandatory>
+      <data-type>VARCHAR2(50)|0</data-type>
+    </column>
+    <column id="42" parent="24" name="ADDRES">
+      <data-type>VARCHAR2(100)|0</data-type>
+    </column>
+    <column id="43" parent="24" name="FIRSTNAME">
+      <data-type>VARCHAR2(20)|0</data-type>
+    </column>
+    <column id="44" parent="24" name="LASTNAME">
+      <data-type>VARCHAR2(20)|0</data-type>
+    </column>
+    <column id="45" parent="24" name="BALANCE">
+      <mandatory>1</mandatory>
+      <data-type>FLOAT(63)|0</data-type>
+    </column>
+    <column id="46" parent="24" name="BLOB">
+      <data-type>BLOB|0</data-type>
+    </column>
+    <index id="47" parent="24" name="People_id_people_uindex">
+      <object-id>22174</object-id>
+      <created-timestamp>2016-09-22.15:52:31</created-timestamp>
+      <modified-timestamp>2016-09-22.15:52:31</modified-timestamp>
+      <columns>ID_PEOPLE</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+      <tablespace-name>SYSTEM</tablespace-name>
+    </index>
+    <index id="48" parent="24" name="PEOPLE_EMAIL_UINDEX">
+      <object-id>22212</object-id>
+      <created-timestamp>2016-09-22.22:01:56</created-timestamp>
+      <modified-timestamp>2016-09-22.22:01:56</modified-timestamp>
+      <columns>EMAIL</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+      <tablespace-name>SYSTEM</tablespace-name>
+    </index>
+    <key id="49" parent="24" name="PEOPLE_ID_PEOPLE_PK">
+      <modified-timestamp>2016-09-22.16:35:37</modified-timestamp>
+      <columns>ID_PEOPLE</columns>
+      <initially-deferred>1</initially-deferred>
+      <underlying-index>People_id_people_uindex</underlying-index>
+      <primary>1</primary>
+    </key>
+    <trigger id="50" parent="24" name="PEOPLE_ID_TRG">
+      <object-id>22211</object-id>
+      <created-timestamp>2016-09-22.20:04:38</created-timestamp>
+      <modified-timestamp>2016-09-22.20:04:38</modified-timestamp>
+      <trig-events>I</trig-events>
+      <trig-turn>BEFORE_ROW</trig-turn>
+    </trigger>
+    <column id="51" parent="25" name="ID_PRODUCT">
+      <mandatory>1</mandatory>
+      <data-type>NUMBER(*)|0</data-type>
+    </column>
+    <column id="52" parent="25" name="IMAGE">
+      <data-type>BLOB|0</data-type>
+    </column>
+    <column id="53" parent="25" name="NAME">
+      <mandatory>1</mandatory>
+      <data-type>VARCHAR2(50)|0</data-type>
+    </column>
+    <column id="54" parent="25" name="PTYPE">
+      <mandatory>1</mandatory>
+      <data-type>VARCHAR2(20)|0</data-type>
+    </column>
+    <column id="55" parent="25" name="COUNT">
+      <mandatory>1</mandatory>
+      <data-type>NUMBER(*)|0</data-type>
+    </column>
+    <column id="56" parent="25" name="PRICE">
+      <mandatory>1</mandatory>
+      <data-type>FLOAT(63)|0</data-type>
+    </column>
+    <column id="57" parent="25" name="ID_MASTER">
+      <mandatory>1</mandatory>
+      <data-type>NUMBER(*)|0</data-type>
+    </column>
+    <column id="58" parent="25" name="COLUMN_8">
+      <data-type>NUMBER(*)|0</data-type>
+    </column>
+    <index id="59" parent="25" name="SYS_C007267">
+      <name-surrogate>1</name-surrogate>
+      <object-id>22200</object-id>
+      <created-timestamp>2016-09-22.16:30:27</created-timestamp>
+      <modified-timestamp>2016-09-22.16:30:27</modified-timestamp>
+      <columns>ID_PRODUCT</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+      <tablespace-name>SYSTEM</tablespace-name>
+    </index>
+    <key id="60" parent="25" name="SYS_C007267">
+      <name-surrogate>1</name-surrogate>
+      <modified-timestamp>2016-09-22.16:30:27</modified-timestamp>
+      <columns>ID_PRODUCT</columns>
+      <initially-deferred>1</initially-deferred>
+      <underlying-index>SYS_C007267</underlying-index>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="61" parent="25" name="PRODUCTS_PEOPLE_ID_PEOPLE_FK">
+      <modified-timestamp>2016-09-22.16:35:47</modified-timestamp>
+      <columns>ID_MASTER</columns>
+      <initially-deferred>1</initially-deferred>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+  </database-model>
+</dataSource>

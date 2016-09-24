@@ -1,0 +1,101 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: ww
+  Date: 26.05.2016
+  Time: 12:32
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+         pageEncoding="utf-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<html>
+
+<head>
+    <title>Knitting</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/mycss.css" rel="stylesheet">
+
+
+
+</head>
+
+<body>
+<div class="navbar-wrapper">
+    <div class="container">
+
+        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Knitting</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"> <a href="/homeServlet"><fmt:message key="home"/></a></li>
+                        <li><a href="/contact"><fmt:message key="contact"/></a></li>
+
+
+
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="market"/> <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><fmt:message key="toys"/></a></li>
+                                <li><a href="#"><fmt:message key="clothes"/></a></li>
+
+
+                            </ul>
+                        </li>
+                    </ul>
+
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <c:if test="${user_session.type == null}">
+                                <li><a href="/signin"><fmt:message key="singin"/></a></li>
+                                <li><a href="/registration"><fmt:message key="registration"/></a></li>
+                            </c:if>
+                            <c:if test="${user_session.type != null}">
+                                <li><a href="/signout"><fmt:message key="signout"/></a></li>
+                                <li><a href="/profile"><fmt:message key="profile"/></a></li>
+
+                            </c:if>
+
+                            <c:if test="${user_session.type .equals('admin') }">
+                                <li><a href="/allmasters"><fmt:message key="allmasters"/></a></li>
+                            </c:if>
+                            <li class="dropdown">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true"
+                                   aria-expanded="false"><fmt:message key="language"/><span class="caret"></span></a>
+
+                                <ul class="dropdown-menu">
+                                    <li><a href="/change_locale?locale=ru_RU"><fmt:message key="lang_ru"/></a></li>
+                                    <li><a href="/change_locale?locale=en_US"><fmt:message key="lang_en"/></a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

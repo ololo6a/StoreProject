@@ -1,0 +1,32 @@
+body {
+    padding-top: 140px;
+    padding-bottom: 40px;
+    background-color: #eee;
+}
+
+
+*[role="form"] {
+    max-width: 600px;
+    padding: 15px;
+    margin: 0 auto;
+    background-color: #eee;
+    border-radius: 0.3em;
+}
+
+*[role="form"] h2 {
+    margin-left: 7em;
+    margin-bottom: 1em;
+
+}
+*[role="form"] h3 {
+    margin-left: 7em;
+    margin-bottom: 1em;
+    color:red;
+}
+
+
+.form-horizontal {
+    max-width:500px;
+    padding: 15px;
+    margin: 0 auto;
+}
