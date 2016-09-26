@@ -2,6 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$APPLICATION_CONFIG_DIR$/consoles/db/87b545f3-1909-4d2b-b24a-a3831692745f" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="D:/backup" vcs="Git" />
     <mapping directory="D:\IdeaProjects\StoreProject\StoreProject" vcs="Git" />
   </component>

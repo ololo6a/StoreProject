@@ -5,5 +5,6 @@ package javacode.DAO.interfaces;
  */
 public interface DaoFactory {
     PeopleDao getPeopleDao();
+    MasterDao getMasterDao();
 }
 

@@ -2,6 +2,7 @@ package javacode.DAO.interfaces;
 
 import javacode.substance.People;
 
+import java.sql.Blob;
 import java.util.List;
 
 /**

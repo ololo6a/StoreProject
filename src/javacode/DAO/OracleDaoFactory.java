@@ -1,6 +1,7 @@
 package javacode.DAO;
 
 import javacode.DAO.interfaces.DaoFactory;
+import javacode.DAO.interfaces.MasterDao;
 import javacode.DAO.interfaces.PeopleDao;
 
 import java.sql.DriverManager;
@@ -47,4 +48,10 @@ public class OracleDaoFactory implements DaoFactory {
     public PeopleDao getPeopleDao() {
         return new OraclePeopleDao();
     }
+
+    @Override
+    public MasterDao getMasterDao() {
+        return new OracleMasterDao();
+    }
+
 }
