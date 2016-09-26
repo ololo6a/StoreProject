@@ -14,6 +14,7 @@ public class People {
     private String secondName;
     private double balance;
 
+    public People(){};
     public People(int id,String type, String passHash, String email, String addres, String firstName, String secondName, double balance) {
         this.id_people=id;
         this.type = type;

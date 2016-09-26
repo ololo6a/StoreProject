@@ -25,7 +25,7 @@ public class OracleMasterDao extends OraclePeopleDao implements MasterDao {
                         "SELECT blob  FROM People where email = '" + email +"'")) {
                 if (rs.next()) {
                     Blob blob = rs.getBlob("blob");
-                    result = blob.getBytes(1, (int) blob.length());
+                   if (blob!=null)  result = blob.getBytes(1, (int) blob.length());
                     return result;
                 }
 
@@ -34,6 +34,23 @@ public class OracleMasterDao extends OraclePeopleDao implements MasterDao {
             }
             return null;
         }
+
+    @Override
+    public Blob getBlob(String email) {
+        try(final java.sql.Connection connection = OracleDaoFactory.getConnection();
+            final Statement statement = connection.createStatement();
+            final ResultSet rs = statement.executeQuery(
+                    "SELECT blob  FROM People where email = '" + email +"'")) {
+            if (rs.next()) {
+                Blob blob = rs.getBlob("blob");
+                return blob;
+            }
+
+        } catch (SQLException e) {
+            //  logger.error("SQLException in getting Reader by email",e);
+        }
+        return null;
+    }
 
     @Override
     public boolean insertImageByEmail(String email, Part blob) {

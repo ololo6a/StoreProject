@@ -9,6 +9,12 @@
       <root url="file://$PROJECT_DIR$/web/WEB-INF/lib" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/web/WEB-INF/lib" />
+    </SOURCES>
+    <excluded>
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/org-apache-commons-codec.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/org-apache-commons-codec.jar!/org/apache/commons/codec/binary" />
+    </excluded>
   </library>
 </component>

@@ -9,5 +9,6 @@ import java.sql.Blob;
 public interface MasterDao extends PeopleDao {
 
      byte[]  getImageByEmail(String email);
+     Blob getBlob(String email);
      boolean insertImageByEmail(String email, Part blob);
 }

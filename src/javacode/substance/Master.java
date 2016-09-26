@@ -7,7 +7,10 @@ import java.sql.Blob;
  */
 public class Master extends People {
     private Blob faceImage;
-
+    private String stringImage;
+    public Master(){
+        super();
+    };
     public Master(int id, String type, String passHash, String email, String addres, String firstName, String secondName, double balance, Blob faceImage) {
         super(id, type, passHash, email, addres, firstName, secondName, balance);
         this.faceImage = faceImage;
@@ -19,5 +22,12 @@ public class Master extends People {
 
     public void setFaceImage(Blob faceImage) {
         this.faceImage = faceImage;
+    }
+
+    public void setStringImage(String t){
+        this.stringImage=t;
+    }
+    public String getStringImage(){
+        return stringImage;
     }
 }
