@@ -51,7 +51,7 @@ public class Profile extends HttpServlet {
                     request.getRequestDispatcher("/WEB-INF/jsp/def/profile.jsp").forward(request, response);
                     return;
                 }
-
+/* sdfsf sf*/
                 response.setContentType("image/gif");
                 OutputStream o = response.getOutputStream();
                 o.write(imgData);
