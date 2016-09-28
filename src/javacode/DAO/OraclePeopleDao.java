@@ -17,7 +17,7 @@ import java.util.List;
 public class OraclePeopleDao implements PeopleDao {
 
     @Override
-    public List<People> getAll() {
+    public List<? extends  People> getAll() {
         return null;
     }
 
@@ -54,13 +54,39 @@ public class OraclePeopleDao implements PeopleDao {
     }
 
     @Override
+    public boolean updatePeopleByEmail(String email, People people) {
+
+        try(final Connection connection = OracleDaoFactory.getConnection();
+            final Statement statement = connection.createStatement();
+            final ResultSet rs = statement.executeQuery(" UPDATE  PEOPLE set " +
+                    "stype = '" + people.getType()+ "'," +
+                    "passhash= '" + people.getPassHash() + "'," +
+                    "email= '" + people.getEmail() + "'," +
+                    "addres= '" + people.getAddres() + "'," +
+                    "FIRSTname= '" + people.getFirstName() + "'," +
+                    "lastname= '" + people.getSecondName() + "'," +
+                    "balance= " + people.getBalance() + "," +
+                    "buyorders= " + people.getBuyOrders() + "," +
+                    "sellorders= " + people.getSellOrders() + " " +
+                    "where email ='" + email + "'"
+            )){
+
+
+        } catch (SQLException e) {
+            //  logger.error("SQLException in getting Reader by email",e);
+            return false;
+        }
+        return true;
+    }
+
+    @Override
     public People getPeopleByEmail(String email) {
 
 
         try(final Connection connection = OracleDaoFactory.getConnection();
             final Statement statement = connection.createStatement();
             final ResultSet rs = statement.executeQuery(
-                    "SELECT id_people, stype, passhash, email, addres, firstname, lastname, balance FROM People where email = '" + email +"'")) {
+                    "SELECT id_people, stype, passhash, email, addres, firstname, lastname, balance, buyorders, sellorders FROM People where email = '" + email +"'")) {
 
 
             if (rs.next()) {
@@ -72,7 +98,10 @@ public class OraclePeopleDao implements PeopleDao {
                         rs.getString("addres"),
                         rs.getString("firstname"),
                         rs.getString("lastname"),
-                        rs.getDouble("balance"));
+                        rs.getDouble("balance"),
+                        rs.getInt("buyorders"),
+                        rs.getInt("sellorders")
+                    );
 
             }
 

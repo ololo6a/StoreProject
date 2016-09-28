@@ -15,6 +15,8 @@ public class Product {
     private int count;
     private int id_master;
     private double price;
+    public Product(){}
+
     public Product(int id_product, Blob blob, String name, String type, int count, int id_master, double price) {
         this.id_product=id_product;
         this.blob = blob;

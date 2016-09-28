@@ -29,7 +29,7 @@
 
         </div>
             <div class="col-sm-9 col-sm-offset-3">
-                <button type="submit" class="btn btn-primary btn-block"><fmt:message key="zareg"/></button>
+                <button type="submit" class="btn btn-primary btn-block"><fmt:message key="save"/></button>
             </div>
         </div><!-- /input   -group image-preview [TO HERE]-->
 

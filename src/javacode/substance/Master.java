@@ -8,11 +8,12 @@ import java.sql.Blob;
 public class Master extends People {
     private Blob faceImage;
     private String stringImage;
+
     public Master(){
         super();
     };
-    public Master(int id, String type, String passHash, String email, String addres, String firstName, String secondName, double balance, Blob faceImage) {
-        super(id, type, passHash, email, addres, firstName, secondName, balance);
+    public Master(int id, String type, String passHash, String email, String addres, String firstName, String secondName, double balance, Blob faceImage, int buyOrders, int sellOrders) {
+        super(id, type, passHash, email, addres, firstName, secondName, balance,buyOrders,sellOrders);
         this.faceImage = faceImage;
     }
 

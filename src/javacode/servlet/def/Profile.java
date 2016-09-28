@@ -28,17 +28,11 @@ import static javax.swing.text.StyleConstants.ModelAttribute;
 @MultipartConfig(maxFileSize = 16177215)
 public class Profile extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("PROFILE DO POST");
+
         HttpSession session = request.getSession();
         People people= (People) session.getAttribute("user_session");
-
-        System.out.println("TRYING GET PART");
-
         Part filePart = request.getPart("photo");
-        System.out.println("GET PART");
-
         boolean ans  =  Connection.getFactory().getMasterDao().insertImageByEmail(people.getEmail(),filePart);
-        System.out.println("INSERT IMAGE ++  == " + ans);
 
         doGet(request,response);
     }
@@ -55,8 +49,11 @@ public class Profile extends HttpServlet {
         HttpSession session = request.getSession();
         People people = (People) session.getAttribute("user_session");
         byte[] imgData = Connection.getFactory().getMasterDao().getImageByEmail(people.getEmail());
-        byte[] decode  = Base64.encodeBase64(imgData);
-        String base64Encoded = new String(decode, "UTF-8");
+        String base64Encoded = null;
+        if (imgData!=null) {
+            byte[] decode = Base64.encodeBase64(imgData);
+            base64Encoded = new String(decode, "UTF-8");
+        }
         Master master = new Master();
         master.setStringImage(base64Encoded);
         request.setAttribute("master",master);

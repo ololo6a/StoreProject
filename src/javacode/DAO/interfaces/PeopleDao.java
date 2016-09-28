@@ -10,10 +10,10 @@ import java.util.List;
  */
 public interface PeopleDao {
 
-    List<People> getAll();
+    List<? extends People> getAll();
     boolean insertPeople(People people);
     int findPeople(People people);
-
+    boolean updatePeopleByEmail(String email, People people);
     People getPeopleByEmail(String email);
 
 

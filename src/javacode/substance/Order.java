@@ -17,6 +17,8 @@ CREATE UNIQUE INDEX "Order_id_order_uindex" ON USER2."Order" (id_order);
 
 package javacode.substance;
 
+
+
 /**
  * Created by Администратор on 21.09.2016.
  */
@@ -30,6 +32,7 @@ public class Order {
     private int count;
     private String date;
 
+    public Order(){}
 
     public Order(int id_order, int id_master, int id_people, int id_product, double price, int count, String date) {
         this.id_order = id_order;

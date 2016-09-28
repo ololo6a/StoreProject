@@ -6,27 +6,27 @@ body {
 
 
 *[role="form"] {
-    max-width: 600px;
+    width: 80% ;
     padding: 15px;
-    margin: 0 auto;
+        margin: 0 auto;
     background-color: #eee;
     border-radius: 0.3em;
+
 }
 
 *[role="form"] h2 {
-    margin-left: 7em;
+    margin-left: 40%;
     margin-bottom: 1em;
 
 }
 *[role="form"] h3 {
-    margin-left: 7em;
+    margin-left: 45%;
     margin-bottom: 1em;
-    color:red;
+    color:green;
 }
-
-
 .form-horizontal {
-    max-width:500px;
+    width: 80%;
     padding: 15px;
     margin: 0 auto;
+
 }

@@ -13,9 +13,12 @@ public class People {
     private String firstName;
     private String secondName;
     private double balance;
+    private int buyOrders;
+    private int sellOrders;
+
 
     public People(){};
-    public People(int id,String type, String passHash, String email, String addres, String firstName, String secondName, double balance) {
+    public People(int id,String type, String passHash, String email, String addres, String firstName, String secondName, double balance, int buyOrders, int sellOrders) {
         this.id_people=id;
         this.type = type;
         this.passHash = passHash;
@@ -24,8 +27,27 @@ public class People {
         this.firstName = firstName;
         this.secondName = secondName;
         this.balance = balance;
+        this.buyOrders = buyOrders;
+        this.sellOrders = sellOrders;
+
     }
 
+
+    public int getBuyOrders() {
+        return buyOrders;
+    }
+
+    public void setBuyOrders(int buyOrders) {
+        this.buyOrders = buyOrders;
+    }
+
+    public int getSellOrders() {
+        return sellOrders;
+    }
+
+    public void setSellOrders(int sellOrders) {
+        this.sellOrders = sellOrders;
+    }
     public void addBalance(double balance){
         if (balance>0) this.balance+=balance;
     }

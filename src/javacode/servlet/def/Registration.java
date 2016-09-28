@@ -40,7 +40,7 @@ public class Registration extends HttpServlet {
         }
 
         boolean is = Connection.getFactory().getPeopleDao().insertPeople
-                (new People(0,"user", Md5.md5Custom(password),email,addres,firstName,secondName,0));
+                (new People(0,"user", Md5.md5Custom(password),email,addres,firstName,secondName,0,0,0));
 
         if (!is) {
             request.setAttribute("emailSUP","SomthingBAD");
