@@ -20,29 +20,36 @@ import java.util.List;
 /**
  * GO TO HOME PAGE
  */
-@WebServlet( urlPatterns = "/deleteMaster")
-public class DeleteMaster extends HttpServlet {
+@WebServlet( urlPatterns = "/addbalance")
+public class AddBalance extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-           }
+
+
+        People people = new People();
+        people.setEmail(request.getParameter("email"));
+
+        boolean  is = Connection.getFactory().getPeopleDao().addBalance(people,Double.parseDouble(request.getParameter("balance")));
+
+        if ( null == Connection.getFactory().getPeopleDao().getPeopleByEmail(request.getParameter("email")))
+            is=false;
+
+        if (is)   request.setAttribute("isadded","true");
+        else  request.setAttribute("isadded","false");
+
+
+        doGet(request,response);
+    }
 
 
     /**
-
+     To home page button
      * @param request request
      * @param response response
      * @throws ServletException
      * @throws IOException
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/WEB-INF/jsp/admin/addbalance.jsp").forward(request, response);
 
-        String email = request.getParameter("id") ;
-        People people = Connection.getFactory().getPeopleDao().getPeopleByEmail(email);
-        if (people.getType().equals("master")) people.setType("user");
-
-        Connection.getFactory().getPeopleDao().updatePeopleByEmail(email,people);
-
-        request.getRequestDispatcher("/allmasters").forward(request, response);
     }
-
-
 }

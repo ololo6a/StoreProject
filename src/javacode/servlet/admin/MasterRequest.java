@@ -5,6 +5,7 @@ package javacode.servlet.admin;
  */
 import javacode.DAO.Connection;
 import javacode.substance.Master;
+import javacode.substance.People;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,22 +17,38 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- *
+ * GO TO HOME PAGE
  */
 @WebServlet( urlPatterns = "/masterRequest")
 public class MasterRequest extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
+        String email = request.getParameter("id");
+        String is = request.getParameter("is");
+
+
+        if (is.equals("accept")) {
+            People people = Connection.getFactory().getPeopleDao().getPeopleByEmail(email);
+            people.setType("master");
+            Connection.getFactory().getPeopleDao().updatePeopleByEmail(people.getEmail(), people);
+        }
+        Connection.getFactory().getBeMasterDao().deleteByEmail(email);
+
+        doGet(request, response);
     }
 
-
     /**
+     To home page button
      * @param request request
      * @param response response
      * @throws ServletException
      * @throws IOException
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        LinkedList<People> allreq= ( LinkedList<People>) Connection.getFactory().getBeMasterDao().getAll();
+        request.setAttribute("allreq",allreq);
         request.getRequestDispatcher("/WEB-INF/jsp/admin/masterRequest.jsp").forward(request, response);
 
     }

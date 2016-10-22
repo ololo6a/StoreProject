@@ -1,5 +1,7 @@
 package javacode.DAO.interfaces;
 
+import javacode.substance.Master;
+
 import javax.servlet.http.Part;
 import java.sql.Blob;
 
@@ -12,4 +14,5 @@ public interface MasterDao extends PeopleDao {
      Blob getBlob(String email);
      boolean insertImageByEmail(String email, Part blob);
 
+    Master getPeopleById(int id);
 }

@@ -21,10 +21,10 @@ public class OracleOrderDao implements OrderDao {
         try(final java.sql.Connection connection = OracleDaoFactory.getConnection();
             final Statement statement = connection.createStatement();
             final ResultSet rs = statement.executeQuery(
-                    "SELECT * FROM \"Order\" where id_people =" + id_people +" or id_master = " + id_people )) {
+                    "SELECT * FROM \"Order\" where id_people =" + id_people +" or id_master = " + id_people + "ORDER BY id_order" )) {
 
 
-            if (rs.next()) {
+            while (rs.next()) {
                 Order one = new Order(rs.getInt("id_order"),
                         rs.getInt("id_master"),
                         rs.getInt("id_people"),
@@ -35,7 +35,7 @@ public class OracleOrderDao implements OrderDao {
                 );
 
                 result.add(one);
-                System.out.println(one.getDate());
+
             }
 
         } catch (SQLException e) {
@@ -44,5 +44,22 @@ public class OracleOrderDao implements OrderDao {
             return result;
         }
        return result;
+    }
+
+    @Override
+    public boolean NewOrder(int buyer, int saler, int product, int count, double price, String date) {
+       String s  ="insert into \"Order\" (id_people,id_master,id_product,product_count,date_buy,product_price) " +
+                           "VALUES (" +buyer+","+saler +", " + product+", "+ count+",  TO_DATE('"+date+"','yyyy-mm-dd'), " + price+")";
+
+
+        try(final java.sql.Connection connection = OracleDaoFactory.getConnection();
+            final Statement statement = connection.createStatement();
+            final ResultSet rs = statement.executeQuery(s)) {
+        } catch (SQLException e) {
+            //  logger.error("SQLException in getting Reader by email",e);
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }

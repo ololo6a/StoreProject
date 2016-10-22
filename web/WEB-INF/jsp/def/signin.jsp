@@ -8,11 +8,8 @@
         <input type="text" id="inputEmail" size="25" class="form-control" placeholder="email"  name="email" required autofocus>
         <label for="inputPassword" class="sr-only"><fmt:message key="password"/></label>
         <input type="password" id="inputPassword" class="form-control" placeholder="password" name="password" required>
-        <button class="btn btn-link" size="25"> <li><a href="/homeServlet"> <fmt:message key="forgot"/>  </button>
+
         <br>
         <button class="btn btn-lg btn-block btn-info" size="25" type="submit"><fmt:message key="singin"/></button>
     </form>
-
-
-
 </div> <!-- /container -->

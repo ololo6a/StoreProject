@@ -29,7 +29,9 @@
             <td>${item.sellOrders}</td>
 
             <c:if test="${!item.type.equals('admin')}">
-                <td><a href="/deleteMaster?id=${item.email}"><fmt:message key="deletefrommaster"/></a></td>
+             <form action ="/allmasters?id=${item.email}" method="post">
+                    <td><button type="submit"><fmt:message key="deletefrommaster"/></button></td>
+             </form>
             </c:if>
         </tr>
 

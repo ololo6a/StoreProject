@@ -5,6 +5,7 @@ package javacode.servlet.admin;
  */
 import javacode.DAO.Connection;
 import javacode.substance.Master;
+import javacode.substance.People;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,6 +23,12 @@ import java.util.List;
 public class AllMasters extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
+        String email = request.getParameter("id") ;
+        People people = Connection.getFactory().getPeopleDao().getPeopleByEmail(email);
+        if (people.getType().equals("master")) people.setType("user");
+        Connection.getFactory().getPeopleDao().updatePeopleByEmail(email,people);
+        doGet(request,response);
     }
 
 
@@ -36,6 +43,5 @@ public class AllMasters extends HttpServlet {
         LinkedList<Master> all = ( LinkedList<Master> ) Connection.getFactory().getMasterDao().getAll();
         request.setAttribute("all",all);
         request.getRequestDispatcher("/WEB-INF/jsp/admin/allmasters.jsp").forward(request, response);
-
     }
 }

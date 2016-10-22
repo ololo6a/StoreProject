@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 
 /**
@@ -56,11 +57,21 @@ public class OraclePeopleDao implements PeopleDao {
     @Override
     public boolean updatePeopleByEmail(String email, People people) {
 
-        try(final Connection connection = OracleDaoFactory.getConnection();
-            final Statement statement = connection.createStatement();
-            final ResultSet rs = statement.executeQuery(" UPDATE  PEOPLE set " +
+        String query = " UPDATE  PEOPLE set " +
+                "stype = '" + people.getType()+ "'," +
+                "passhash= '" + people.getPassHash() + "'," +
+                "email= '" + people.getEmail() + "'," +
+                "addres= '" + people.getAddres() + "'," +
+                "FIRSTname= '" + people.getFirstName() + "'," +
+                "lastname= '" + people.getSecondName() + "'," +
+                "balance= " + people.getBalance() + "," +
+                "buyorders= " + people.getBuyOrders() + "," +
+                "sellorders= " + people.getSellOrders() + " " +
+                "where email ='" + email + "'";
+
+        if (people.getPassHash().equals("")) {
+            query = " UPDATE  PEOPLE set " +
                     "stype = '" + people.getType()+ "'," +
-                    "passhash= '" + people.getPassHash() + "'," +
                     "email= '" + people.getEmail() + "'," +
                     "addres= '" + people.getAddres() + "'," +
                     "FIRSTname= '" + people.getFirstName() + "'," +
@@ -68,12 +79,16 @@ public class OraclePeopleDao implements PeopleDao {
                     "balance= " + people.getBalance() + "," +
                     "buyorders= " + people.getBuyOrders() + "," +
                     "sellorders= " + people.getSellOrders() + " " +
-                    "where email ='" + email + "'"
-            )){
+                    "where email ='" + email + "'";
+        }
+
+        try(final Connection connection = OracleDaoFactory.getConnection();
+            final Statement statement = connection.createStatement();
+            final ResultSet rs = statement.executeQuery(query)){
 
 
         } catch (SQLException e) {
-            //  logger.error("SQLException in getting Reader by email",e);
+           e.printStackTrace();
             return false;
         }
         return true;
@@ -82,13 +97,10 @@ public class OraclePeopleDao implements PeopleDao {
     @Override
     public People getPeopleByEmail(String email) {
 
-
         try(final Connection connection = OracleDaoFactory.getConnection();
             final Statement statement = connection.createStatement();
             final ResultSet rs = statement.executeQuery(
                     "SELECT id_people, stype, passhash, email, addres, firstname, lastname, balance, buyorders, sellorders FROM People where email = '" + email +"'")) {
-
-
             if (rs.next()) {
 
                 return new People(rs.getInt("id_people"),
@@ -109,6 +121,46 @@ public class OraclePeopleDao implements PeopleDao {
           //  logger.error("SQLException in getting Reader by email",e);
         }
         return null;
+    }
+
+    @Override
+    public boolean addBalance(People people, double balance) {
+        try(final Connection connection = OracleDaoFactory.getConnection();
+            final Statement statement = connection.createStatement();
+            final ResultSet rs = statement.executeQuery("UPDATE PEOPLE SET BALANCE = BALANCE + "+balance+ " where email = '" + people.getEmail()+ "'")) {
+
+        } catch (SQLException e) {
+           return false;
+            //  logger.error("SQLException in getting Reader by email",e);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean addSellOrder(int id) {
+        String s = "UPDATE PEOPLE SET sellorders = sellorders+1 where id_people ="+ id;
+        try(final Connection connection = OracleDaoFactory.getConnection();
+            final Statement statement = connection.createStatement();
+            final ResultSet rs = statement.executeQuery("UPDATE PEOPLE SET sellorders = sellorders+1 where id_people ="+ id)) {
+
+        } catch (SQLException e) {
+            return false;
+            //  logger.error("SQLException in getting Reader by email",e);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean addBuyOrder(int id) {
+        try(final Connection connection = OracleDaoFactory.getConnection();
+            final Statement statement = connection.createStatement();
+            final ResultSet rs = statement.executeQuery("UPDATE PEOPLE SET buyorders = buyorders+1 where id_people ="+ id)) {
+
+        } catch (SQLException e) {
+            return false;
+            //  logger.error("SQLException in getting Reader by email",e);
+        }
+        return true;
     }
 
 

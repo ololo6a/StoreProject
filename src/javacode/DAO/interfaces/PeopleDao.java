@@ -15,6 +15,8 @@ public interface PeopleDao {
     int findPeople(People people);
     boolean updatePeopleByEmail(String email, People people);
     People getPeopleByEmail(String email);
-
+    boolean addBalance(People people, double balance);
+    boolean addSellOrder(int id);
+    boolean addBuyOrder(int id);
 
 }

@@ -4,6 +4,7 @@ package javacode.servlet.def;
  * Created by Администратор on 16.09.2016.
  */
 import javacode.DAO.Connection;
+import javacode.Md5;
 import javacode.substance.Master;
 import javacode.substance.People;
 
@@ -32,8 +33,26 @@ public class Profile extends HttpServlet {
         HttpSession session = request.getSession();
         People people= (People) session.getAttribute("user_session");
         Part filePart = request.getPart("photo");
-        boolean ans  =  Connection.getFactory().getMasterDao().insertImageByEmail(people.getEmail(),filePart);
 
+        String  email =  people.getEmail();
+        people.setEmail(request.getParameter("email"));
+        people.setFirstName(request.getParameter("firstName"));
+        people.setSecondName(request.getParameter("secondName"));
+        people.setAddres(request.getParameter("addres"));
+
+        if (!request.getParameter("password").equals("")) {
+            people.setPassHash(Md5.md5Custom(request.getParameter("password")));
+        }
+
+        boolean text = Connection.getFactory().getPeopleDao().updatePeopleByEmail(email,people);
+
+        if (!people.getType().equals("user")) {
+            if (!filePart.getSubmittedFileName().equals("")) {
+                boolean ans = Connection.getFactory().getMasterDao().insertImageByEmail(people.getEmail(), filePart);
+            }
+        }
+
+        session.setAttribute("user_session",people);
         doGet(request,response);
     }
 
@@ -57,6 +76,8 @@ public class Profile extends HttpServlet {
         Master master = new Master();
         master.setStringImage(base64Encoded);
         request.setAttribute("master",master);
+
+
         request.getRequestDispatcher("/WEB-INF/jsp/def/profile.jsp").forward(request, response);
     }
 

@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
+import java.sql.Connection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -89,7 +90,7 @@ public class OracleMasterDao extends OraclePeopleDao implements MasterDao {
         try{
             final java.sql.Connection connection = OracleDaoFactory.getConnection();
             final Statement statement = connection.createStatement();
-            InputStream fin = blob.getInputStream();
+                      InputStream fin = blob.getInputStream();
             PreparedStatement pre = connection.prepareStatement("update people set blob = ? where email ='" + email+ "'");
             pre.setBinaryStream(1,fin,(int)blob.getSize());
             pre.executeUpdate();
@@ -102,5 +103,34 @@ public class OracleMasterDao extends OraclePeopleDao implements MasterDao {
             e.printStackTrace();
         }
         return true;
+    }
+
+    @Override
+    public Master getPeopleById(int id) {
+
+        try (final Connection connection = OracleDaoFactory.getConnection();
+             final Statement statement = connection.createStatement();
+             final ResultSet rs = statement.executeQuery(
+                     "SELECT id_people, stype, passhash, email, addres, firstname, lastname, balance, buyorders, sellorders FROM People where id_people = " + id)) {
+            if (rs.next()) {
+                return new Master(rs.getInt("id_people"),
+                        rs.getString("STYPE"),
+                        rs.getString("passhash"),
+                        rs.getString("email"),
+                        rs.getString("addres"),
+                        rs.getString("firstname"),
+                        rs.getString("lastname"),
+                        rs.getDouble("balance"),
+                        null,
+                        rs.getInt("buyorders"),
+                        rs.getInt("sellorders")
+                );
+
+            }
+
+        } catch (SQLException e) {
+            //  logger.error("SQLException in getting Reader by email",e);
+        }
+        return null;
     }
 }

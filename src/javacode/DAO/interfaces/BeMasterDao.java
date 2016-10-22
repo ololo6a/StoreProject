@@ -12,8 +12,8 @@ import java.util.List;
  */
 public interface BeMasterDao {
 
-    List<BeMaster> getAll();
+    List<People> getAll();
     boolean insert(BeMaster beMaster);
-    boolean remove(BeMaster beMaster);
+    boolean deleteByEmail(String email);
 
 }

@@ -1,0 +1,29 @@
+body{
+    margin-top: 130px;
+    margin-left: 50px;
+}
+.form {
+    margin-top:150px;
+    margin-left: 25%;
+    margin-right: 25%;
+
+}
+.row{
+    margin-top:50px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.btn {  }
+
+input[type="number"] {
+    margin-left: 20px;
+    width:50px;
+    margin-right: 20px;
+}
+.table{
+    margin-top: 5px;
+    width: 300px;
+}
+.img{
+    border-radius: 10px;
+    }

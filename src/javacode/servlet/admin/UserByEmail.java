@@ -5,7 +5,9 @@ package javacode.servlet.admin;
  */
 import javacode.DAO.Connection;
 import javacode.substance.Master;
+import javacode.substance.Order;
 import javacode.substance.People;
+import org.apache.commons.codec.binary.Base64;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,6 +25,23 @@ import java.util.List;
 @WebServlet( urlPatterns = "/userbyemail")
 public class UserByEmail extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String email = request.getParameter("newemail");
+        if (email.equals("")) doGet(request,response);
+        People people = Connection.getFactory().getPeopleDao().getPeopleByEmail(email);
+        LinkedList<Order> myOrders = (LinkedList<Order>) Connection.getFactory().getOrderDao().getById(people.getId_people());
+        request.setAttribute("people",people);
+        request.setAttribute("myOrders",myOrders);
+
+        byte[] imgData = Connection.getFactory().getMasterDao().getImageByEmail(people.getEmail());
+        String base64Encoded = null;
+        if (imgData!=null) {
+            byte[] decode = Base64.encodeBase64(imgData);
+            base64Encoded = new String(decode, "UTF-8");
+        }
+        Master master = new Master();
+        master.setStringImage(base64Encoded);
+        request.setAttribute("master",master);
+        doGet(request,response);
     }
 
 
@@ -35,8 +54,7 @@ public class UserByEmail extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-        request.getRequestDispatcher("/jsp/admin/userbyemail.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/admin/userbyemail.jsp").forward(request, response);
     }
 
 

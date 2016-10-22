@@ -1,21 +1,19 @@
-
+.form {
+    margin-top:150px;
+    margin-left: 25%;
+}
 .form-group{
-    width: 385px;
-    margin-top:120px;
-    background-color: #eee;
+
+    margin-left:25%;
 
 }
-.profileimage{
-    height: 400px;
-    width: 400px;
-}
+
 .featurette-image.img-responsive {
 
-    height: 400px;
-    width: 400px;
     border-radius: 20px;
 }
 .image-preview-input {
+
     position: relative;
     overflow: hidden;
     margin: 0px;
@@ -24,6 +22,7 @@
     border-color: #ccc;
 }
 .image-preview-input input[type=file] {
+
     position: absolute;
     top: 0;
     right: 0;
