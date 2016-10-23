@@ -18,7 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * GO TO HOME PAGE
+ * Submit new thing button
  */
 @WebServlet( urlPatterns = "/newthing")
 @MultipartConfig(maxFileSize = 16177215)
@@ -48,7 +48,7 @@ public class NewThing extends HttpServlet {
 
 
     /**
-     To home page button
+     To new thing page
      * @param request request
      * @param response response
      * @throws ServletException

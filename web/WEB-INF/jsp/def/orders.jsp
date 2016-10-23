@@ -16,6 +16,10 @@
     <th><fmt:message key="productcount"/></th>
     <th><fmt:message key="price"/></th>
     <th><fmt:message key="date"/></th>
+    <th><fmt:message key="address"/></th>
+    <th><fmt:message key="name"/></th>
+    <th><fmt:message key="surname"/></th
+
 
     </thead>
     <tbody>
@@ -32,6 +36,9 @@
             <td>${item.count}</td>
             <td>${item.price}</td>
             <td>${item.date}</td>
+            <td>${item.addres}</td>
+            <td>${item.name}</td>
+            <td>${item.surname}</td>
 
         </tr>
 
@@ -48,6 +55,9 @@
                 <td>${item.count}</td>
                 <td>${item.price}</td>
                 <td>${item.date}</td>
+                <td>${item.addres}</td>
+                <td>${item.name}</td>
+                <td>${item.surname}</td>
 
             </tr>
 

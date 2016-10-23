@@ -20,7 +20,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * GO TO HOME PAGE
+ * Display user with this email
  */
 @WebServlet( urlPatterns = "/userbyemail")
 public class UserByEmail extends HttpServlet {
@@ -46,7 +46,7 @@ public class UserByEmail extends HttpServlet {
 
 
     /**
-
+        To user by email page
      * @param request request
      * @param response response
      * @throws ServletException

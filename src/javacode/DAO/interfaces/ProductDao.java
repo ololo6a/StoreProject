@@ -20,7 +20,7 @@ public interface ProductDao {
     Master getAuthor(int product);
     boolean setInvisibleOrDeleteById(int idproduct);
 
-    LinkedList<Product> getAll(int onlyvisible);
+
     /* set onlyvisible = 1 for only visible things
        2 = all things
        0 = only invisible

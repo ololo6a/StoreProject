@@ -44,7 +44,7 @@
 
                     <div class="profileimage">
                         <br>
-                        <img  class="img-circle" alt="img" src="data:image/jpeg;base64,${master.stringImage}"/>
+                        <img  height="300" width="300" class="img-circle" alt="img" src="data:image/jpeg;base64,${master.stringImage}"/>
                     </div>
                 </div>
             </c:if>
@@ -82,7 +82,7 @@
                     <div class="form-group">
                         <label for="addres" class="col-sm-3 control-label"><fmt:message key="address"/></label>
                         <div class="col-sm-9">
-                            <input type="text" id="addres" class="form-control"  name="addres" value=${user_session.addres}  autofocus>
+                            <input type="text" class="form-control"  id="addres"  name="addres" value="${user_session.addres}"  >
                         </div>
                     </div>
 

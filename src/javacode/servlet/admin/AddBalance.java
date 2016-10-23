@@ -18,7 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * GO TO HOME PAGE
+ * add balance , balance can be  < 0
  */
 @WebServlet( urlPatterns = "/addbalance")
 public class AddBalance extends HttpServlet {

@@ -28,7 +28,7 @@ public class AuthorProfile extends HttpServlet {
     }
 
     /**
-     * Logout, invalidate session
+     * Some  Author profile
      * @param request request
      * @param response response
      * @throws ServletException

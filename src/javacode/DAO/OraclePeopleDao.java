@@ -2,6 +2,7 @@ package javacode.DAO;
 
 import javacode.DAO.interfaces.PeopleDao;
 import javacode.substance.People;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,6 +17,8 @@ import java.util.StringJoiner;
  * Created by Администратор on 22.09.2016.
  */
 public class OraclePeopleDao implements PeopleDao {
+
+    private static final Logger logger = Logger.getLogger(PeopleDao.class);
 
     @Override
     public List<? extends  People> getAll() {
@@ -42,7 +45,7 @@ public class OraclePeopleDao implements PeopleDao {
         {
 
         } catch (SQLException e) {
-
+            logger.error("SQLException insertPeople", e);
             return false;
         }
 
@@ -88,7 +91,7 @@ public class OraclePeopleDao implements PeopleDao {
 
 
         } catch (SQLException e) {
-           e.printStackTrace();
+            logger.error("SQLException updatePeopleByEmail", e);
             return false;
         }
         return true;
@@ -118,7 +121,7 @@ public class OraclePeopleDao implements PeopleDao {
             }
 
         } catch (SQLException e) {
-          //  logger.error("SQLException in getting Reader by email",e);
+            logger.error("SQLException getPeopleByEmail", e);
         }
         return null;
     }
@@ -130,8 +133,8 @@ public class OraclePeopleDao implements PeopleDao {
             final ResultSet rs = statement.executeQuery("UPDATE PEOPLE SET BALANCE = BALANCE + "+balance+ " where email = '" + people.getEmail()+ "'")) {
 
         } catch (SQLException e) {
-           return false;
-            //  logger.error("SQLException in getting Reader by email",e);
+            logger.error("SQLException addBalance", e);
+            return false;
         }
         return true;
     }
@@ -144,8 +147,8 @@ public class OraclePeopleDao implements PeopleDao {
             final ResultSet rs = statement.executeQuery("UPDATE PEOPLE SET sellorders = sellorders+1 where id_people ="+ id)) {
 
         } catch (SQLException e) {
+            logger.error("SQLException addSellOrder", e);
             return false;
-            //  logger.error("SQLException in getting Reader by email",e);
         }
         return true;
     }
@@ -157,8 +160,8 @@ public class OraclePeopleDao implements PeopleDao {
             final ResultSet rs = statement.executeQuery("UPDATE PEOPLE SET buyorders = buyorders+1 where id_people ="+ id)) {
 
         } catch (SQLException e) {
+            logger.error("SQLException addBuyOrder", e);
             return false;
-            //  logger.error("SQLException in getting Reader by email",e);
         }
         return true;
     }

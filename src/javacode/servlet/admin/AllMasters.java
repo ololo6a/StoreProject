@@ -17,7 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * GO TO HOME PAGE
+ * display all masters and admins
  */
 @WebServlet( urlPatterns = "/allmasters")
 public class AllMasters extends HttpServlet {
@@ -33,7 +33,7 @@ public class AllMasters extends HttpServlet {
 
 
     /**
-     To home page button
+     All masters button
      * @param request request
      * @param response response
      * @throws ServletException

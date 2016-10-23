@@ -23,6 +23,10 @@ import java.util.LinkedList;
 /**
  * Created by Администратор on 22.09.2016.
  */
+
+/**
+ *  Buy button
+ */
 @WebServlet(name = "Market", urlPatterns = "/market")
 public class Market extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -49,7 +53,7 @@ public class Market extends HttpServlet {
                 boolean neworder = false;
                 if (p.getCount()>=count) correct=true;
                 Connection.getFactory().getProductDao().changeCount(prod, count * -1);
-                if (correct) {neworder = Connection.getFactory().getOrderDao().NewOrder(people.getId_people(), m.getId_people(), prod, count, p.getPrice(), d.toString());}
+                if (correct) {neworder = Connection.getFactory().getOrderDao().NewOrder(people.getId_people(), m.getId_people(), prod, count, p.getPrice(), d.toString(),people.getAddres(),people.getFirstName(), people.getSecondName());}
                 if (neworder) {
                     Connection.getFactory().getPeopleDao().addSellOrder(m.getId_people());
                     Connection.getFactory().getPeopleDao().addBuyOrder(people.getId_people());
@@ -66,7 +70,7 @@ public class Market extends HttpServlet {
     }
 
     /**
-     * Logout, invalidate session
+     * To Market page
      * @param request request
      * @param response response
      * @throws ServletException

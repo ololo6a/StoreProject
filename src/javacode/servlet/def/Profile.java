@@ -23,7 +23,7 @@ import java.util.LinkedList;
 import static javax.swing.text.StyleConstants.ModelAttribute;
 
 /**
- *
+ *  Save changes button
  */
 @WebServlet(name = "Profile", urlPatterns = "/profile")
 @MultipartConfig(maxFileSize = 16177215)
@@ -57,7 +57,7 @@ public class Profile extends HttpServlet {
     }
 
     /**
-
+        To profile
      * @param request request
      * @param response response
      * @throws ServletException

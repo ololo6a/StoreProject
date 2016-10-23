@@ -1,9 +1,11 @@
 package javacode.DAO;
 
+import javacode.DAO.interfaces.PeopleDao;
 import javacode.DAO.interfaces.ProductDao;
 import javacode.substance.Master;
 import javacode.substance.People;
 import javacode.substance.Product;
+import org.apache.log4j.Logger;
 
 import javax.naming.ldap.PagedResultsControl;
 import javax.servlet.http.Part;
@@ -17,6 +19,9 @@ import java.util.List;
  * Created by Администратор on 28.09.2016.
  */
 public class OracleProductDao implements ProductDao {
+
+    private static final Logger logger = Logger.getLogger(OracleProductDao.class);
+
     @Override
     public boolean addThing(Product product,Part blob) {
 
@@ -37,13 +42,12 @@ public class OracleProductDao implements ProductDao {
 
         }
          catch (IOException e) {
-            e.printStackTrace();
-                return false;
+             logger.error("SQLException addThing", e);
+             return false;
         }
 
          catch (SQLException e) {
-            //  logger.error("SQLException in getting Reader by email",e);1
-            e.printStackTrace();
+            logger.error("SQLException addThing", e);
             return false;
         }
         return true;
@@ -68,7 +72,7 @@ public class OracleProductDao implements ProductDao {
                 p.setStringImagefromBlob();
             }
         } catch (SQLException e) {
-            //  logger.error("SQLException in getting Reader by email",e);
+            logger.error("SQLException getById", e);
             return null;
         }
         return p;
@@ -82,7 +86,7 @@ public class OracleProductDao implements ProductDao {
             final  ResultSet rs2 = statement.executeQuery(
                     "UPDATE PRODUCTS set count = count +"+count+" where id_product ="+id + " and ((count+ "+count+")>-1)")){
             } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("SQLException changeCount", e);
             return false;
         }
         return true;
@@ -114,8 +118,7 @@ public class OracleProductDao implements ProductDao {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-            //  logger.error("SQLException in getting Reader by email",e);
+            logger.error("SQLException getAuthor", e);
             return null;
         }
         return null;
@@ -133,7 +136,7 @@ public class OracleProductDao implements ProductDao {
                 if (rs.getInt(1) == 0) haveorder = false;
             }
         } catch (SQLException e) {
-            //  logger.error("SQLException in getting Reader by email",e);
+            logger.error("SQLException setInvisibleOrDeleteById", e);
             return false;
         }
         if (haveorder==false) {
@@ -143,7 +146,7 @@ public class OracleProductDao implements ProductDao {
                          "delete  from products where id_product="+idproduct)){
 
             } catch (SQLException e) {
-                //  logger.error("SQLException in getting Reader by email",e);
+                logger.error("SQLException setInvisibleOrDeleteById", e);
                 return false;
             }
         }
@@ -156,7 +159,7 @@ public class OracleProductDao implements ProductDao {
                          "update products set vision=0 where id_product ="+idproduct)){
 
             } catch (SQLException e) {
-                //  logger.error("SQLException in getting Reader by email",e);
+                logger.error("SQLException setInvisibleOrDeleteById", e);
                 return false;
             }
         }
@@ -164,10 +167,6 @@ public class OracleProductDao implements ProductDao {
     }
 
 
-    @Override
-    public LinkedList<Product> getAll(int onlyvisible) {
-        return null;
-    }
 
     @Override
     public LinkedList<Product> getAllWithType(int onlyvisible, String stype) {
@@ -191,7 +190,7 @@ public class OracleProductDao implements ProductDao {
             }
 
         } catch (SQLException e) {
-            //  logger.error("SQLException in getting Reader by email",e);
+            logger.error("SQLException getAllWithType", e);
             return all;
         }
 
@@ -220,7 +219,7 @@ public class OracleProductDao implements ProductDao {
             }
 
         } catch (SQLException e) {
-            //  logger.error("SQLException in getting Reader by email",e);
+            logger.error("SQLException getMy", e);
             return allmy;
         }
 
@@ -242,10 +241,10 @@ public class OracleProductDao implements ProductDao {
 
 
              } catch (SQLException e) {
-                 e.printStackTrace();
+                 logger.error("SQLException change", e);
                  return false;
              } catch (IOException e) {
-                 e.printStackTrace();
+                 logger.error("IOException change", e);
              }
          }
 
@@ -262,7 +261,7 @@ public class OracleProductDao implements ProductDao {
                                   " where id_product ="+id)){
 
              } catch (SQLException e) {
-                 e.printStackTrace();
+                 logger.error("SQLException change", e);
                  return false;
              }
          }

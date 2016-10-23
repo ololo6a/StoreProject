@@ -17,7 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * GO TO HOME PAGE
+ * Change selected product
  */
 @WebServlet( urlPatterns = "/change")
 @MultipartConfig(maxFileSize = 16177215)

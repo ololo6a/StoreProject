@@ -19,7 +19,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * GO TO HOME PAGE
+ * Delete button
  */
 @WebServlet( urlPatterns = "/mythings")
 @MultipartConfig(maxFileSize = 16177215)
@@ -32,7 +32,7 @@ public class MyThings extends HttpServlet {
 
 
     /**
-     To home page button
+     To my things button
      * @param request request
      * @param response response
      * @throws ServletException

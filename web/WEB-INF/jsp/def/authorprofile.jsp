@@ -15,7 +15,7 @@
             <div class="col-lg-4" >
                 <div class="profileimage">
                     <br>
-                    <img  class="img-circle" alt="img" src="data:image/jpeg;base64,${master.stringImage}"/>
+                    <img  height="300" width="300" class="img-circle" alt="img" src="data:image/jpeg;base64,${master.stringImage}"/>
                 </div>
             </div>
 

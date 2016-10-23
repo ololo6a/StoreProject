@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * GO TO HOME PAGE
+ * Sing in
  */
 @WebServlet(name = "Signin", urlPatterns = "/signin")
 public class Singin extends HttpServlet {
@@ -50,15 +50,15 @@ public class Singin extends HttpServlet {
         if(people.getPassHash().equals(Md5.md5Custom(password))) {
             HttpSession session = request.getSession();
             session.setAttribute("user_session",people);
-            request.getRequestDispatcher("/WEB-INF/jsp/def/home.jsp").forward(request, response);
+            request.getRequestDispatcher("/homeServlet").forward(request, response);
             return;
         }
 
 
-        doGet(request, response);
+        request.getRequestDispatcher("/homeServlet").forward(request, response);
     }
 
-    /**
+    /** To SING IN PAGE
      * @param request request
      * @param response response
      * @throws ServletException

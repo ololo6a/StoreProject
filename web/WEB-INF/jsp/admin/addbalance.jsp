@@ -27,7 +27,7 @@
         <div class="form-group">
             <label for="balance" class="col-sm-3 control-label"><fmt:message key="sum"/></label>
             <div class="col-sm-9">
-                <input type="number" step="0.01" id="balance" min="0"  name="balance" class="form-control">
+                <input type="number" step="0.01" id="balance"   name="balance" class="form-control">
             </div>
         </div>
 

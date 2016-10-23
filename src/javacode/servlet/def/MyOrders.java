@@ -24,7 +24,7 @@ public class MyOrders extends HttpServlet {
     }
 
     /**
-     * Logout, invalidate session
+     * Display all user's orders
      * @param request request
      * @param response response
      * @throws ServletException

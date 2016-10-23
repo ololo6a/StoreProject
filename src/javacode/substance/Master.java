@@ -1,6 +1,10 @@
 package javacode.substance;
 
+import org.apache.commons.codec.binary.Base64;
+
+import java.io.UnsupportedEncodingException;
 import java.sql.Blob;
+import java.sql.SQLException;
 
 /**
  * Created by Администратор on 21.09.2016.
@@ -30,5 +34,30 @@ public class Master extends People {
     }
     public String getStringImage(){
         return stringImage;
+    }
+
+    public void setStringImagefromBlob(){
+        if (faceImage==null) return ;
+
+        byte [] imgData  = null;
+        try {
+            imgData = faceImage.getBytes(1, (int) faceImage.length());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        String base64Encoded = null;
+        if (imgData!=null) {
+            byte[] decode = Base64.encodeBase64(imgData);
+            try {
+                base64Encoded = new String(decode, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
+
+        stringImage=base64Encoded;
+
     }
 }

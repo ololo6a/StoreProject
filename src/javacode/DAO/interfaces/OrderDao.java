@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface OrderDao    {
     List<Order> getById(int id_people);
-    boolean NewOrder(int buyer,int saler,int product, int count, double price, String date);
+    boolean NewOrder(int buyer,int saler,int product, int count, double price, String date, String addres, String name, String surname);
 }

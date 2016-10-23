@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * GO TO HOME PAGE
+ * Registration button
  */
 @WebServlet(urlPatterns = "/registration")
 public class Registration extends HttpServlet {
@@ -51,7 +51,7 @@ public class Registration extends HttpServlet {
     }
 
     /**
-    Registration
+    To Registration page
      * @param request request
      * @param response response
      * @throws ServletException

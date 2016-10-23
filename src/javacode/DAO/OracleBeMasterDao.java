@@ -9,11 +9,14 @@ import java.sql.*;
 import java.sql.Connection;
 import java.util.LinkedList;
 import java.util.List;
-
+import org.apache.log4j.Logger;
 /**
  * Created by Администратор on 28.09.2016.
  */
 public class OracleBeMasterDao implements BeMasterDao{
+
+    private static final Logger logger = Logger.getLogger(OracleBeMasterDao.class);
+
     @Override
     public List<People> getAll(){
         LinkedList<People> all = new LinkedList<People>();
@@ -38,7 +41,7 @@ public class OracleBeMasterDao implements BeMasterDao{
             }
 
         } catch (SQLException e) {
-
+            logger.error("SQLException getAll", e);
         }
 
 
@@ -58,7 +61,7 @@ public class OracleBeMasterDao implements BeMasterDao{
         {
 
         } catch (SQLException e) {
-
+            logger.error("SQLException insert", e);
             return false;
         }
 
@@ -75,7 +78,7 @@ public class OracleBeMasterDao implements BeMasterDao{
         {
 
         } catch (SQLException e) {
-
+            logger.error("SQLException deleteByEmail", e);
             return false;
         }
 

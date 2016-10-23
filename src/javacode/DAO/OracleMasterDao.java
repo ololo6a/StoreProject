@@ -3,6 +3,7 @@ package javacode.DAO;
 import javacode.DAO.interfaces.MasterDao;
 import javacode.substance.Master;
 import javacode.substance.People;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.Part;
 import java.io.FileInputStream;
@@ -17,6 +18,8 @@ import java.util.List;
  * Created by Администратор on 25.09.2016.
  */
 public class OracleMasterDao extends OraclePeopleDao implements MasterDao {
+
+    private static final Logger logger = Logger.getLogger(OracleMasterDao.class);
 
     @Override
     public List<? extends People> getAll(){
@@ -38,11 +41,13 @@ public class OracleMasterDao extends OraclePeopleDao implements MasterDao {
                 m.setBuyOrders(rs.getInt("buyorders"));
                 m.setSellOrders(rs.getInt("sellorders"));
                 m.setType(rs.getString("stype"));
+                m.setFaceImage(rs.getBlob("blob"));
+                m.setStringImagefromBlob();
                 all.add(m);
             }
 
         } catch (SQLException e) {
-            //  logger.error("SQLException in getting Reader by email",e);
+            logger.error("SQLException getAll", e);
             return all;
         }
 
@@ -63,7 +68,7 @@ public class OracleMasterDao extends OraclePeopleDao implements MasterDao {
                 }
 
             } catch (SQLException e) {
-                //  logger.error("SQLException in getting Reader by email",e);
+            logger.error("SQLException getImageByEmail", e);
             }
             return null;
         }
@@ -80,7 +85,7 @@ public class OracleMasterDao extends OraclePeopleDao implements MasterDao {
             }
 
         } catch (SQLException e) {
-            //  logger.error("SQLException in getting Reader by email",e);
+            logger.error("SQLException getBlob", e);
         }
         return null;
     }
@@ -97,10 +102,10 @@ public class OracleMasterDao extends OraclePeopleDao implements MasterDao {
 
 
         } catch (SQLException e) {
-            //  logger.error("SQLException in getting Reader by email",e);1
+            logger.error("SQLException insertImageByEmail", e);
             return false;
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("IOException insertImageByEmail", e);
         }
         return true;
     }
@@ -111,7 +116,7 @@ public class OracleMasterDao extends OraclePeopleDao implements MasterDao {
         try (final Connection connection = OracleDaoFactory.getConnection();
              final Statement statement = connection.createStatement();
              final ResultSet rs = statement.executeQuery(
-                     "SELECT id_people, stype, passhash, email, addres, firstname, lastname, balance, buyorders, sellorders FROM People where id_people = " + id)) {
+                     "SELECT id_people, stype, passhash, email, addres, firstname, lastname, balance, buyorders, sellorders FROM People where id_people = " + id + " and stype <> 'user'")) {
             if (rs.next()) {
                 return new Master(rs.getInt("id_people"),
                         rs.getString("STYPE"),
@@ -129,7 +134,7 @@ public class OracleMasterDao extends OraclePeopleDao implements MasterDao {
             }
 
         } catch (SQLException e) {
-            //  logger.error("SQLException in getting Reader by email",e);
+            logger.error("SQLException getPeopleById", e);
         }
         return null;
     }

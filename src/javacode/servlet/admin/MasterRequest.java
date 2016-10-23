@@ -17,7 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * GO TO HOME PAGE
+ * Display all request to master from users
  */
 @WebServlet( urlPatterns = "/masterRequest")
 public class MasterRequest extends HttpServlet {
@@ -38,8 +38,7 @@ public class MasterRequest extends HttpServlet {
         doGet(request, response);
     }
 
-    /**
-     To home page button
+    /** TO MASTER REQUEST PAGE
      * @param request request
      * @param response response
      * @throws ServletException

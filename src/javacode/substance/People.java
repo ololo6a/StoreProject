@@ -17,6 +17,7 @@ public class People {
     private int sellOrders;
 
 
+
     public People(){};
     public People(int id,String type, String passHash, String email, String addres, String firstName, String secondName, double balance, int buyOrders, int sellOrders) {
         this.id_people=id;
@@ -118,4 +119,6 @@ public class People {
     public void setBalance(double balance) {
         this.balance = balance;
     }
+
+
 }

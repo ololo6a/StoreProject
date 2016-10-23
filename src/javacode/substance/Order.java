@@ -31,10 +31,15 @@ public class Order {
     private double price;
     private int count;
     private String date;
+    private String addres;
+
+    private String name;
+    private String surname;
 
     public Order(){}
 
-    public Order(int id_order, int id_master, int id_people, int id_product, double price, int count, String date) {
+    public Order(int id_order, int id_master, int id_people, int id_product, double price, int count, String date,
+                 String addres, String name, String surname) {
         this.id_order = id_order;
         this.id_master = id_master;
         this.id_people = id_people;
@@ -42,6 +47,9 @@ public class Order {
         this.price = price;
         this.count = count;
         this.date = date;
+        this.addres = addres;
+        this.name = name;
+        this.surname = surname;
     }
 
     public int getId_order() {
@@ -98,5 +106,29 @@ public class Order {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getAddres() {
+        return addres;
+    }
+
+    public void setAddres(String addres) {
+        this.addres = addres;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 }
